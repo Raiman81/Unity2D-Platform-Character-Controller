@@ -1,4 +1,3 @@
-using System;
 using Checks;
 using Controllers;
 using UnityEngine;
@@ -7,7 +6,7 @@ namespace Capabilities
 {
     public class WallInteraction : MonoBehaviour
     {
-        public bool WallJumping { get; private set; }
+        private bool WallJumping { get; set; }
         
         [Header("Wall Slide")] 
         [SerializeField] [Range(0.1f, 5f)] private float wallSlideMaxSpeed = 2f;
@@ -40,7 +39,7 @@ namespace Capabilities
         {
             if (_onWall && !_onGround)
             {
-                _desiredJump |= _controller.input.RetrieveJumpInput(this.gameObject);
+                _desiredJump |= _controller.input.RetrieveJumpInput(gameObject);
             }
         }
 
@@ -58,7 +57,7 @@ namespace Capabilities
                 {
                     _velocity.x = 0;
 
-                    if (_controller.input.RetrieveMoveInput(this.gameObject) == _collisionDataRetriever.ContactNormal.x)
+                    if (_controller.input.RetrieveMoveInput(gameObject) == _collisionDataRetriever.ContactNormal.x)
                     {
                         _wallStickCounter -= Time.deltaTime;
                     }
@@ -92,13 +91,13 @@ namespace Capabilities
             
             if (_desiredJump)
             {
-                if (-_wallDirectionX == _controller.input.RetrieveMoveInput(this.gameObject))
+                if (-_wallDirectionX == _controller.input.RetrieveMoveInput(gameObject))
                 {
                     _velocity = new Vector2(wallJumpClimb.x * _wallDirectionX, wallJumpClimb.y);
                     WallJumping = true;
                     _desiredJump = false;
                 }
-                else if (_controller.input.RetrieveMoveInput(this.gameObject) == 0)
+                else if (_controller.input.RetrieveMoveInput(gameObject) == 0)
                 {
                     _velocity = new Vector2(wallJumpBounce.x * _wallDirectionX, wallJumpBounce.y);
                     WallJumping = true;

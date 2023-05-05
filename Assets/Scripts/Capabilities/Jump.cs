@@ -40,7 +40,7 @@ namespace Capabilities
         // Update is called once per frame
         private void Update()
         {
-            _desiredJump |= _controller.input.RetrieveJumpInput(this.gameObject);
+            _desiredJump |= _controller.input.RetrieveJumpInput(gameObject);
         }
 
         private void FixedUpdate()
@@ -76,11 +76,11 @@ namespace Capabilities
                 
             }
 
-            if (_controller.input.RetrieveJumpHoldInput(this.gameObject) && _rb.velocity.y > 0)
+            if (_controller.input.RetrieveJumpHoldInput(gameObject) && _rb.velocity.y > 0)
             {
                 _rb.gravityScale = upwardMovementMultiplier;
             }
-            else if (!_controller.input.RetrieveJumpHoldInput(this.gameObject) || _rb.velocity.y < 0)
+            else if (!_controller.input.RetrieveJumpHoldInput(gameObject) || _rb.velocity.y < 0)
             {
                 _rb.gravityScale = downwardMovementMultiplier;
             }
