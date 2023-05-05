@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Shinjingi
+namespace Controllers
 {
     [CreateAssetMenu(fileName = "PlayerController", menuName = "InputController/PlayerController")]
     public class PlayerController : InputController
@@ -8,6 +8,11 @@ namespace Shinjingi
         public override bool RetrieveJumpInput()
         {
             return Input.GetButtonDown("Jump");
+        }
+
+        public override bool RetrieveJumpHoldInput()
+        {
+            return Input.GetButton("Jump");
         }
 
         public override float RetrieveMoveInput()

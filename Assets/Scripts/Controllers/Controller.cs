@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Shinjingi
+namespace Controllers
 {
     public class Controller : MonoBehaviour
     {
